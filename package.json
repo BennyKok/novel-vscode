@@ -6,6 +6,10 @@
   "engines": {
     "vscode": "^1.75.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BennyKok/novel-vscode"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
