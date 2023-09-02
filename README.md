@@ -4,6 +4,10 @@ A vscode extension for [novel](https://github.com/steven-tey/novel)
 
 Based on [hello-world-react-vite](https://github.com/microsoft/vscode-webview-ui-toolkit-samples/tree/main/frameworks/hello-world-react-vite) for vscode
 
+## Installation
+
+Download on [vscode marketplace](https://marketplace.visualstudio.com/items?itemName=bennykok.novel-vscode)
+
 ## Features
 
 - Edit markdown file directly in vscode with novel editor `[ctrl/cmd]+shift+p` -> `Edit Markdown with Novel`
