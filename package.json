@@ -3,6 +3,7 @@
   "displayName": "novel-vscode",
   "description": "A quick integration of Novel.sh editor to VSCode",
   "version": "0.0.1",
+  "publisher": "bennykok",
   "engines": {
     "vscode": "^1.75.0"
   },
