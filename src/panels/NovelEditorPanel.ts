@@ -1,4 +1,13 @@
-import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
+import {
+  Disposable,
+  Webview,
+  WebviewPanel,
+  window,
+  Uri,
+  ViewColumn,
+  ColorThemeKind,
+  ColorTheme,
+} from "vscode";
 import { getUri } from "../utilities/getUri";
 import { getNonce } from "../utilities/getNonce";
 import { Range, Position, workspace } from "vscode";
@@ -35,8 +44,15 @@ export class NovelEditorPanel {
 
     // Set an event listener to listen for messages passed from the webview context
     this._setWebviewMessageListener(this._panel.webview);
-  }
 
+    this._disposables.push(
+      window.onDidChangeActiveColorTheme((e: ColorTheme) => {
+        let isDarkTheme = e.kind === ColorThemeKind.Dark;
+        this._panel.webview.postMessage({ type: "theme", isDarkTheme: isDarkTheme });
+      })
+    );
+  }
+  
   /**
    * Renders the current webview panel if it exists otherwise a new webview panel
    * will be created and displayed.
@@ -70,17 +86,21 @@ export class NovelEditorPanel {
       NovelEditorPanel.currentPanel = new NovelEditorPanel(panel, extensionUri);
     }
 
+    let currentTheme = window.activeColorTheme;
+    let isDarkTheme = currentTheme.kind === ColorThemeKind.Dark;
+
     const content = await workspace.fs.readFile(contentUri);
     NovelEditorPanel.currentPanel._panel.webview.postMessage({
       type: "revive",
       value: content.toString(),
       uri: contentUri,
+      isDarkTheme: isDarkTheme,
     });
   }
 
   public static revive(panel: WebviewPanel, state: any) {
-    console.log("revive something", state);
-    
+    // console.log("revive something", state);
+
     // panel.webview.html = this.getWebviewContent(state.content);
     panel.webview.postMessage({ type: "revive", value: state.content });
   }
@@ -170,12 +190,10 @@ export class NovelEditorPanel {
             const data = encoder.encode(text);
 
             console.log(uri);
-            
-            workspace.fs
-              .writeFile(uri, data)
-              .then(() => {
-                window.showInformationMessage(`Successfully wrote to ${uri.path}`);
-              });
+
+            workspace.fs.writeFile(uri, data).then(() => {
+              window.showInformationMessage(`Successfully wrote to ${uri.path}`);
+            });
             return;
         }
       },
