@@ -1,5 +1,6 @@
 {
   "name": "novel-vscode",
+  "icon": "assets/icon.png",
   "displayName": "novel-vscode",
   "description": "A quick integration of Novel.sh editor to VSCode",
   "version": "0.0.1",
@@ -32,7 +33,7 @@
     "pretest": "pnpm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "package": "pnpm vsce package --no-dependencies",
-    "publish": "pnpm vsce publish --no-dependencies"
+    "publish-vsce": "pnpm vsce publish --no-dependencies"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
