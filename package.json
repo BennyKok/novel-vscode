@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/BennyKok/novel-vscode"
   },
-  "main": "./out/extension.js",
+  "main": "./out/main.js",
   "contributes": {
     "commands": [
       {
@@ -26,7 +26,7 @@
     "install:all": "pnpm install && cd webview-ui && npm install",
     "start:webview": "cd webview-ui && pnpm run start",
     "build:webview": "cd webview-ui && pnpm run build",
-    "vscode:prepublish": "pnpm run compile && npm run esbuild-base -- --minify",
+    "vscode:prepublish": "pnpm build:webview && pnpm compile && npm run esbuild-base -- --minify && cd webview-ui",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",

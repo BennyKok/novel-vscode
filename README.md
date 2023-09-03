@@ -8,9 +8,17 @@ Based on [hello-world-react-vite](https://github.com/microsoft/vscode-webview-ui
 
 Download on [vscode marketplace](https://marketplace.visualstudio.com/items?itemName=bennykok.novel-vscode)
 
+or
+
+Building `vsix`
+
+```
+pnpm package
+```
+
 ## Features
 
-- Edit markdown file directly in vscode with novel editor `[ctrl/cmd]+shift+p` -> `Edit Markdown with Novel`
+- Edit markdown file directly in vscode with novel editor `[ctrl/cmd]+shift+p` -&gt; `Edit Markdown with Novel`
 - Debounced Auto save
 
 https://github.com/BennyKok/novel-vscode/assets/18395202/8f2d400b-2a03-4ea3-96a2-6ce1eb9869b8
