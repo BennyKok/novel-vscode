@@ -14,6 +14,20 @@ body {
   padding: 0px;
 }
 
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding-top: 20px;
+  }
+}
+
 /* for some reason the default check box is not rendered */
 input[type=checkbox]:before {
   content: "";
