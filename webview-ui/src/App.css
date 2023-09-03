@@ -22,6 +22,12 @@ main {
   align-items: center;
 }
 
+@media (max-width: 1024px) {
+  #root > main > div {
+    border: none;
+  }
+}
+
 @media (min-width: 1024px) {
   main {
     padding-top: 20px;
