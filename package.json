@@ -20,6 +20,18 @@
         "command": "novel.editWith",
         "title": "Edit file with Novel"
       },
+      {
+        "command": "novel.editBoldFont",
+        "title": "Bold Font"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "novel.editBoldFont",
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "when": "activeCustomEditorId === 'novel.editMarkdown'"
+      }
     ],
     "customEditors": [
       {

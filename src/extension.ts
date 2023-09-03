@@ -19,4 +19,8 @@ export function activate(context: ExtensionContext) {
       await commands.executeCommand("vscode.openWith", editor.document.uri, NovelEditorPanel.viewType);
     })
   );
+  context.subscriptions.push(
+    commands.registerCommand("novel.editBoldFont", async () => {
+    })
+  );
 }
