@@ -17,8 +17,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.previewMarkdown",
-        "title": "Edit Markdown with Novel"
+        "command": "novel.editWith",
+        "title": "Edit file with Novel"
+      },
+    ],
+    "customEditors": [
+      {
+        "viewType": "novel.editMarkdown",
+        "displayName": "Markdown (Novel)",
+        "selector": [
+          {
+            "filenamePattern": "{*.md,*.mdx}"
+          }
+        ],
+        "priority": "default"
       }
     ]
   },

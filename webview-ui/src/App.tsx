@@ -1,9 +1,12 @@
 import { vscode } from "./utilities/vscode";
 import { Editor } from "novel";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Uri } from "vscode";
 import "./App.css";
 import { ThemeProvider } from "next-themes";
+
+type UpdateFunctionProps = NonNullable<Parameters<typeof Editor>[0]["onUpdate"]>
+type EditorType = Parameters<UpdateFunctionProps>[0]
 
 function App() {
   const defaultState = vscode.getState() as { content: string; uri: any; isDarkTheme: boolean };
@@ -15,6 +18,8 @@ function App() {
   const [theme, setTheme] = useState(
     defaultState == undefined || defaultState.isDarkTheme ? "dark" : "light"
   );
+
+  const editorRef = useRef<EditorType | null>(null);
 
   useEffect(() => {
     const event = (event: any) => {
@@ -32,8 +37,12 @@ function App() {
             uri: message.uri,
             isDarkTheme: message.isDarkTheme,
           });
-          // localStorage.setItem('novel-editor', message.value)
-          // console.log(message.uri);
+
+          if (editorRef.current) {
+            editorRef.current.commands.setContent(
+              message.value, false
+            )
+          }
           break;
         case "theme":
           setTheme(message.isDarkTheme ? "dark" : "light");
@@ -57,7 +66,9 @@ function App() {
         {content && (
           <Editor
             defaultValue={content}
-            onDebouncedUpdate={(editor) => {
+            onUpdate={(editor) => {
+              editorRef.current = editor;
+
               if (!editor) return;
 
               vscode.postMessage({
