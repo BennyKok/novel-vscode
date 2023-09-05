@@ -8,11 +8,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tiptap/core": "^2.1.7",
+    "@tiptap/extension-table": "^2.1.7",
+    "@tiptap/extension-table-cell": "^2.1.7",
+    "@tiptap/extension-table-header": "^2.1.7",
+    "@tiptap/extension-table-row": "^2.1.7",
     "@vscode/webview-ui-toolkit": "^1.2.2",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-mark": "^3.0.1",
     "next-themes": "^0.2.1",
     "novel": "^0.1.17",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tiptap-markdown": "^0.8.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",

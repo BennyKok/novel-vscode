@@ -4,9 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import type { Uri } from "vscode";
 import "./App.css";
 import { ThemeProvider } from "next-themes";
+import { Markdown } from "tiptap-markdown";
+import Table from "@tiptap/extension-table";
+import TableRow from "@tiptap/extension-table-row";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import { Extension } from '@tiptap/core';
+import markdownitContainer from "markdown-it-container";
 
-type UpdateFunctionProps = NonNullable<Parameters<typeof Editor>[0]["onUpdate"]>
-type EditorType = Parameters<UpdateFunctionProps>[0]
+type UpdateFunctionProps = NonNullable<Parameters<typeof Editor>[0]["onUpdate"]>;
+type EditorType = Parameters<UpdateFunctionProps>[0];
 
 function App() {
   const defaultState = vscode.getState() as { content: string; uri: any; isDarkTheme: boolean };
@@ -39,9 +46,7 @@ function App() {
           });
 
           if (editorRef.current) {
-            editorRef.current.commands.setContent(
-              message.value, false
-            )
+            editorRef.current.commands.setContent(message.value, false);
           }
           break;
         case "theme":
@@ -65,6 +70,35 @@ function App() {
       <main>
         {content && (
           <Editor
+            extensions={[
+              Table.configure({
+                resizable: true,
+                lastColumnResizable: true,
+              }),
+              TableRow.configure({
+                HTMLAttributes: {
+                  style: 'border-bottom: 1px solid;'
+                }
+              }),
+              TableHeader.configure({
+                HTMLAttributes: {
+                  style: 'border-bottom: 1px solid;'
+                }
+              }),
+              TableCell,
+              // Container,
+              Markdown.configure({
+                html: true,
+                transformCopiedText: true,
+                transformPastedText: true,
+              }),
+            ]}
+            // editorProps={{
+            //   handlePaste: (view, event, slice) => {
+            //     console.log(event, slice);
+            //     return false;
+            //   },
+            // }}
             defaultValue={content}
             onUpdate={(editor) => {
               editorRef.current = editor;
