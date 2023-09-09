@@ -68,7 +68,7 @@ function App() {
         dark: "dark-theme",
       }}>
       <main>
-        {content && (
+        {content != undefined && (
           <Editor
             extensions={[
               Table.configure({
