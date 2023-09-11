@@ -17,7 +17,7 @@
     "markdown-it-container": "^3.0.0",
     "markdown-it-mark": "^3.0.1",
     "next-themes": "^0.2.1",
-    "novel": "^0.1.17",
+    "novel": "^0.1.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tiptap-markdown": "^0.8.2"
