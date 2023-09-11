@@ -88,7 +88,7 @@ function App() {
               TableCell,
               // Container,
               Markdown.configure({
-                html: true,
+                html: false,
                 transformCopiedText: true,
                 transformPastedText: true,
               }),
