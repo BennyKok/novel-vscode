@@ -10,7 +10,6 @@ import TableRow from "@tiptap/extension-table-row";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import { Extension } from '@tiptap/core';
-import markdownitContainer from "markdown-it-container";
 
 type UpdateFunctionProps = NonNullable<Parameters<typeof Editor>[0]["onUpdate"]>;
 type EditorType = Parameters<UpdateFunctionProps>[0];
@@ -71,20 +70,24 @@ function App() {
         {content != undefined && (
           <Editor
             extensions={[
+              // @ts-ignore
               Table.configure({
                 resizable: true,
                 lastColumnResizable: true,
               }),
+              // @ts-ignore
               TableRow.configure({
                 HTMLAttributes: {
                   style: 'border-bottom: 1px solid;'
                 }
               }),
+              // @ts-ignore
               TableHeader.configure({
                 HTMLAttributes: {
                   style: 'border-bottom: 1px solid;'
                 }
               }),
+              // @ts-ignore
               TableCell,
               // Container,
               Markdown.configure({
